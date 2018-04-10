@@ -3,8 +3,8 @@ A simple   Line   class.
 NOTE: This is NOT rosegraphics -- it is your OWN Line class.
 
 Authors: David Mutchler, Dave Fisher, Valerie Galluzzi, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Jonathan Collins.
+"""  # Done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import math
 import m1t_test_Line as m1t
@@ -15,7 +15,7 @@ import m1t_test_Line as m1t
 ########################################################################
 
 # ----------------------------------------------------------------------
-# TODO: 2. With your instructor, READ THE INSTRUCTIONS
+# Done: 2. With your instructor, READ THE INSTRUCTIONS
 #   in file  m0_INSTRUCTIONS.txt, asking questions as needed.
 #   Once you understand the instructions, mark this TO DO as DONE.
 #
@@ -216,8 +216,13 @@ class Line(object):
           :type start: Point
           :type end:   Point
         """
+        self.start=start.clone()
+        self.end=end.clone()
+        self.initstart=start
+        self.initend = end
+        self.numclone=0
         # --------------------------------------------------------------
-        # TODO: 3.
+        # Done: 3.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -325,8 +330,11 @@ class Line(object):
         Type hints:
           :rtype: Line
         """
+        line2=Line(self.start,self.end)
+        self.numclone=self.numclone+1
+        return line2
         # --------------------------------------------------------------
-        # TODO: 4.
+        # Done: 4.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -358,8 +366,11 @@ class Line(object):
             line1.reverse()
             print(line1 == line2)    # Should now print: True
         """
+        reverse=self.start
+        self.start=self.end
+        self.end=reverse
         # --------------------------------------------------------------
-        # TODO: 5.
+        # Done: 5.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -394,8 +405,19 @@ class Line(object):
         Type hints:
           :rtype: float
         """
+        if self.end.x-self.start.x == 0:
+            slope=math.inf
+        else:
+            top=self.end.y-self.start.y
+            bottom=self.end.x-self.start.x
+            slope=top/bottom
+
+        return slope
+
+
+
         # --------------------------------------------------------------
-        # TODO: 6.
+        # Done: 6.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -427,8 +449,17 @@ class Line(object):
         Type hints:
           :rtype: float
         """
+        xx=self.end.x-self.start.x
+        yy=self.end.y-self.start.y
+        xxs=xx ** 2
+        yys=yy ** 2
+        lengthsqrd=xxs+yys
+        length=math.sqrt(lengthsqrd)
+        return length
+
+
         # --------------------------------------------------------------
-        # TODO: 7.
+        # Done: 7.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -467,8 +498,11 @@ class Line(object):
         Type hints:
           :rtype: int:
         """
+        return self.numclone
+
+
         # --------------------------------------------------------------
-        # TODO: 8.
+        # Done: 8.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -501,8 +535,18 @@ class Line(object):
           :type  other_line: Line
           :rtype: Line:
         """
+        startx=self.start.x+other_line.start.x
+        starty = self.start.y + other_line.start.y
+        endx = self.end.x + other_line.end.x
+        endy = self.end.y + other_line.end.y
+        point1=Point(startx,starty)
+        point2=Point(endx,endy)
+        line3=Line(point1,point2)
+        return line3
+
+
         # --------------------------------------------------------------
-        # TODO: 9.
+        # Done: 9.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -535,8 +579,18 @@ class Line(object):
           :type  other_line: Line
           :rtype: Line:
         """
+        startx = self.start.x - other_line.start.x
+        starty = self.start.y - other_line.start.y
+        endx = self.end.x - other_line.end.x
+        endy = self.end.y - other_line.end.y
+        point1 = Point(startx, starty)
+        point2 = Point(endx, endy)
+        line3 = Line(point1, point2)
+        return line3
+
+
         # --------------------------------------------------------------
-        # TODO: 10.
+        # Done: 10.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -562,8 +616,16 @@ class Line(object):
         Type hints:
           :rtype: Point
         """
+        xx = self.end.x - self.start.x
+        yy = self.end.y - self.start.y
+        xxh=xx/2
+        yyh=yy/2
+        mix=self.start.x+xxh
+        miy=self.start.y+yyh
+        midp=Point(mix,miy)
+        return midp
         # --------------------------------------------------------------
-        # TODO: 11.
+        # Done: 11.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -598,8 +660,13 @@ class Line(object):
           :type  line2: Line
           :rtype: bool
         """
+        if round(self.slope(),12)==round(line2.slope(),12):
+            return True
+        else:
+            return False
+
         # --------------------------------------------------------------
-        # TODO: 12.
+        # Done: 12.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -663,8 +730,10 @@ class Line(object):
             print(line1)  # Should print: Line[(-3, -4), (3, 4)]
             print(line2)  # Should print: Line[(0, 1), (10, 20)]
         """
+        self.start=self.initstart
+        self.end=self.initend
         # --------------------------------------------------------------
-        # TODO: 13.
+        # Done: 13.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
