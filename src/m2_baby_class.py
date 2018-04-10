@@ -2,8 +2,8 @@
 A   Baby   class and methods that use the Baby class.
 
 Authors: David Mutchler, Dave Fisher, Valerie Galluzzi, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Jonathan Collins.
+"""  # Done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 
 def main():
@@ -38,8 +38,31 @@ def main():
             mckinley.hour_passes()
 
 
+class Baby(object):
+
+
+    def __init__(self,name):
+        self.name=name
+        print('Hello baby %s!' % (self.name))
+        self.timesincefeeding=0
+
+
+    def feed_baby(self):
+        self.timesincefeeding=0
+        print('Thank you for feeding baby %s.' % (self.name))
+
+
+    def hour_passes(self):
+        self.timesincefeeding=self.timesincefeeding + 1
+        if self.timesincefeeding < 2:
+            print('Baby %s is sleeping.' % (self.name))
+        elif self.timesincefeeding == 2:
+            print('Baby %s is awake.  Time for food.' % (self.name))
+        elif self.timesincefeeding > 2:
+            print('Baby %s is CRYING uncontrollably!  Feed the Baby!.' % (self.name))
+
 # ----------------------------------------------------------------------
-# TODO: 2. Implement a class called   Baby   that has a constructor and
+# Done: 2. Implement a class called   Baby   that has a constructor and
 #   two methods, as described below.  Your finished Baby class should
 #   cause the code above to display the expected output.  Hint: Your
 #   class will need instance variables that you must figure out.
